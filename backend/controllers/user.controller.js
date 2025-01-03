@@ -1,5 +1,6 @@
 // Update: backend/controllers/user.controller.js
 const User = require('../models/user');
+const Game = require('../models/game');
 const { fetchTriviaQuestions } = require('../services/trivia.service');
 
 // @desc    Register a new user
@@ -88,6 +89,58 @@ exports.updateUserProfile = async (req, res) => {
         res.status(200).json({ message: 'User updated successfully', user });
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error });
+    }
+};
+
+// @desc    Start a new trivia game
+// @route   POST /api/users/game/start
+// @access  Private
+exports.startNewGame = async (req, res) => {
+    const { userId, category, difficulty, questions } = req.body;
+
+    try {
+        const newGame = new Game({
+            userId,
+            category,
+            difficulty,
+            questions,
+            correctAnswers: 0
+        });
+
+        await newGame.save();
+
+        res.status(201).json({
+            message: 'Game started successfully',
+            gameId: newGame._id
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to start game', error });
+    }
+};
+
+// @desc    End a game and update the results
+// @route   PUT /api/users/game/end/:id
+// @access  Private
+exports.endGame = async (req, res) => {
+    const { correctAnswers } = req.body;
+
+    try {
+        const game = await Game.findById(req.params.id);
+
+        if (!game) {
+            return res.status(404).json({ message: 'Game not found' });
+        }
+
+        game.correctAnswers = correctAnswers;
+
+        await game.save();
+
+        res.status(200).json({
+            message: 'Game ended successfully',
+            game
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to end game', error });
     }
 };
 
