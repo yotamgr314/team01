@@ -1,0 +1,141 @@
+body {
+  font-family: "ABeeZee";
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #3b3b98, #b33771);
+  color: white;
+  gap: 0px;
+  opacity: 0px;
+  height: 800px;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 21.863px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.level-search {
+  width: 146px;
+  height: 27px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 31.8px;
+}
+
+.level {
+  width: 134px;
+  height: 27px;
+  flex-shrink: 0;
+  border-radius: 9.474px;
+  background: #7e7e7e;
+  color: #fff;
+  font-family: "ABeeZee";
+  font-size: 15.14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#level-select {
+    background: none;
+    color: white;
+    border: none;
+    font-family: "ABeeZee";
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.search input {
+  padding: 5px;
+  border: none;
+  border-radius: 15.368px;
+  background: #7e7e7e;
+  margin-left: 18px;
+}
+
+main h2 {
+  text-align: center;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+main h3 {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.categories {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #e056fd #30336b;
+}
+
+.categories li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: left;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.categories li:hover {
+  background: #130f40;
+}
+
+.categories::-webkit-scrollbar {
+  width: 10px;
+}
+
+.categories::-webkit-scrollbar-thumb {
+  background: #e056fd;
+  border-radius: 5px;
+}
+
+.categories::-webkit-scrollbar-track {
+  background: #30336b;
+}
+
+.categories .highlight {
+  border: 2px solid #e056fd;
+}
+
+footer {
+  width: 360px;
+  height: 64px;
+  flex-shrink: 0;
+  margin-top: 20px;
+  text-align: center;
+}
+
+footer nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1em;
+}
+
+footer nav a:hover {
+  text-decoration: underline;
+}

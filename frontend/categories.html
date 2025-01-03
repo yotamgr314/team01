@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/categories.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const levels = ["EASY", "MEDIUM", "HARD"];
+            const levelSelect = document.querySelector('#level-select');
+            levels.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level;
+                option.textContent = level;
+                levelSelect.appendChild(option);
+            });
+            const categories = [
+                "General Knowledge", "Entertainment: Books", "Entertainment: Film",
+                "Entertainment: Music", "Entertainment: Musicals & Theatres",
+                "Entertainment: Television", "Entertainment: Video Games", "Entertainment: Board Games",
+                "Science & Nature", "Science: Computers", "Science: Mathematics",
+                "Mythology", "Sports", "Geography", "History", "Politics",
+                "Art", "Celebrities", "Animals", "Vehicles", "Entertainment: Comics",
+                "Science: Gadgets", "Entertainment: Japanese Anime & Manga", "Entertainment: Cartoon & Animations"
+            ];
+            const categoriesList = document.querySelector('.categories');
+            const searchInput = document.querySelector('.search input');
+            function populateCategories(list) {
+                categoriesList.innerHTML = '';
+                list.forEach(category => {
+                    const li = document.createElement('li');
+                    li.textContent = category;
+                    li.addEventListener('click', () => {
+                        window.location.href = `${category.replace(/ /g, '-').toLowerCase()}.html`;
+                    });
+                    categoriesList.appendChild(li);
+                });
+            }
+            populateCategories(categories);
+            searchInput.addEventListener('input', function () {
+                const filteredCategories = categories.filter(category => category.toLowerCase().includes(searchInput.value.toLowerCase()));
+                populateCategories(filteredCategories);
+            });
+            li.addEventListener('click', () => {
+                window.location.href = `${category.replace(/ /g, '-').toLowerCase()}.html`;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Start a new game, ALI!</h1>
+            <div class="level-search">
+                <div class="level">
+                    <label for="level-select">Level:</label>
+                    <select id="level-select">
+                    </select>
+                </div>
+                <div class="search"><input type="text"></div>
+            </div>
+        </header>
+
+        <main>
+            <h2>Are you a genius?</h2>
+            <h3>Select Category</h3>
+            <ul class="categories">
+            </ul>
+        </main>
+
+        <footer>
+            <a href="#">
+                <img src="./images/home.svg" alt="Home Icon"> Home
+            </a>
+            <a href="#">
+                <img src="./images/local_convenience_store.svg" alt="Leaderboard Icon"> Leaderboard
+            </a>
+            <a href="#">
+                <img src="./images/account_circle.svg" alt="Profile Icon"> Profile
+            </a>
+        </footer>
+    </div>
+</body>
+
+</html>
