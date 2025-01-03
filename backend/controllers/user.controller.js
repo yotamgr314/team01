@@ -1,5 +1,6 @@
-// File: backend/controllers/user.controller.js
+// Update: backend/controllers/user.controller.js
 const User = require('../models/user');
+const { fetchTriviaQuestions } = require('../services/trivia.service');
 
 // @desc    Register a new user
 // @route   POST /api/users/register
@@ -90,4 +91,21 @@ exports.updateUserProfile = async (req, res) => {
     }
 };
 
-//---------------------------------------------------------------
+// @desc    Start a new trivia game
+// @route   GET /api/users/trivia/start
+// @access  Public
+exports.startTriviaGame = async (req, res) => {
+    const { category, difficulty } = req.query;
+
+    try {
+        // Fetch questions from the trivia service
+        const questions = await fetchTriviaQuestions(category, difficulty);
+
+        res.status(200).json({
+            message: 'Trivia game started successfully',
+            questions
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};

@@ -5,12 +5,16 @@ const {
     registerUser,
     loginUser,
     getUserProfile,
-    updateUserProfile
+    updateUserProfile,
+    startTriviaGame
 } = require('../controllers/user.controller');
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/:id', getUserProfile);
 router.put('/:id', updateUserProfile);
+router.get('/trivia/start', startTriviaGame);
 
 module.exports = router;
+
+//---------------------------------------------------------------
