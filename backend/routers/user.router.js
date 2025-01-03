@@ -6,7 +6,9 @@ const {
     loginUser,
     getUserProfile,
     updateUserProfile,
-    startTriviaGame
+    startTriviaGame,
+    startNewGame,
+    endGame
 } = require('../controllers/user.controller');
 
 router.post('/register', registerUser);
@@ -15,6 +17,9 @@ router.get('/:id', getUserProfile);
 router.put('/:id', updateUserProfile);
 router.get('/trivia/start', startTriviaGame);
 
+// New game routes
+router.post('/game/start', startNewGame);
+router.put('/game/end/:id', endGame);
+
 module.exports = router;
 
-//---------------------------------------------------------------
