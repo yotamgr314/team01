@@ -1,92 +1,93 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+// File: backend/controllers/user.controller.js
 const User = require('../models/user');
 
-// @desc Register new user
-// @route POST /api/users/register
-// @access Public
-const registerUser = async (req, res) => {
-    const { email, username, password } = req.body;
+// @desc    Register a new user
+// @route   POST /api/users/register
+// @access  Public
+exports.registerUser = async (req, res) => {
+    const { email, username, password, avatar } = req.body;
 
     try {
-        // Check if user exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
 
-        // Hash password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        // Create user
         const user = new User({
             email,
             username,
-            password: hashedPassword,
-            avatar: `https://avatar-placeholder.iran.liara.run/${username}`
+            password,
+            avatar
         });
 
         await user.save();
 
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(201).json({ message: 'User registered successfully', user });
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error });
     }
 };
 
-// @desc Login user
-// @route POST /api/users/login
-// @access Public
-const loginUser = async (req, res) => {
+// @desc    Login a user
+// @route   POST /api/users/login
+// @access  Public
+exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Check for user
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        // Check password
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
+        if (user.password !== password) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        // Generate JWT
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-        res.json({
-            token,
-            user: {
-                id: user._id,
-                username: user.username,
-                email: user.email,
-                avatar: user.avatar
-            }
-        });
-    } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(200).json({ message: 'Login successful', user });
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error });
     }
 };
 
-
-const getUserProfile = async (req, res) => {
+// @desc    Get user profile
+// @route   GET /api/users/:id
+// @access  Private
+exports.getUserProfile = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).select('-password');
+        const user = await User.findById(req.params.id);
+
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        res.json(user);
-    } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error });
     }
 };
 
-module.exports = {
-    registerUser,
-    loginUser,
-    getUserProfile
+// @desc    Update user profile
+// @route   PUT /api/users/:id
+// @access  Private
+exports.updateUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const { username, avatar } = req.body;
+        user.username = username || user.username;
+        user.avatar = avatar || user.avatar;
+
+        await user.save();
+
+        res.status(200).json({ message: 'User updated successfully', user });
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error });
+    }
 };
+
+//---------------------------------------------------------------

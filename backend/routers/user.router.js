@@ -1,14 +1,16 @@
+// File: backend/routers/user.router.js
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, getUserProfile } = require('../controllers/user.controller');
+const {
+    registerUser,
+    loginUser,
+    getUserProfile,
+    updateUserProfile
+} = require('../controllers/user.controller');
 
-// User Registration
 router.post('/register', registerUser);
-
-// User Login
 router.post('/login', loginUser);
-
-// Get User Profile
-router.get('/profile/:id', getUserProfile);
+router.get('/:id', getUserProfile);
+router.put('/:id', updateUserProfile);
 
 module.exports = router;
