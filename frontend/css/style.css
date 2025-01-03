@@ -1,0 +1,152 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #ff7f50, #6a5acd);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Container Background */
+  .container {
+    width: 100%;
+    height: 100%;
+    background: url('../assests/images/b9447314cf796cd0b94f2c80356fac78.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Landing Page Styles */
+  .content {
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    display: block;
+    margin: 10px auto;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #000;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #444;
+  }
+  
+  /* Sign-Up Page Styles */
+  .signup-box {
+
+    width: 296px;
+height: 372px;
+top: 254px;
+left: 32px;
+gap: 0px;
+border-radius: 43px 0px 0px 0px;
+opacity: 0px;
+border: 1px solid rgba(88, 88, 88, 1)
+
+  }
+  
+  .signup-box h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  form input::placeholder {
+    color: #ddd;
+  }
+  
+  form button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #ff006e;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #d6005e;
+  }
+/* Login Box */
+.login-box {
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px 20px;
+    border-radius: 15px;
+    width: 300px;
+  }
+  
+  .login-box h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  form input::placeholder {
+    color: #ddd;
+  }
+  
+  form button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #ff006e;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #d6005e;
+  }
+    
